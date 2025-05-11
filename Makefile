@@ -4,6 +4,7 @@ DFLAGS = $(CFLAGS) -g3
 
 SRC_DIR = src
 SRC_FILES =	main.c \
+			parsing.c \
 			usage.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

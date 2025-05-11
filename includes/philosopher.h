@@ -6,7 +6,7 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:11:52 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/05/11 21:24:18 by seetwoo          ###   ########.fr       */
+/*   Updated: 2025/05/11 22:39:44 by seetwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ typedef struct s_phvar	t_phvar;
 struct s_phvar
 {
 	int	philo_number;
+	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
-	int	time_to_die;
 	int	max_meal;
 };
 
-int	check_usage(int ac, char **av);
+int		check_usage(int ac, char **av);
+void	parsing(char **av, t_phvar *args);
 
 #endif
