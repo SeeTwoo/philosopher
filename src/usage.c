@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   usage.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/11 21:27:12 by seetwoo           #+#    #+#             */
+/*   Updated: 2025/05/11 21:27:20 by seetwoo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosopher.h"
 
 int	ft_isdigit(char c)
@@ -10,7 +22,7 @@ int	just_digit(char **av)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = 1;
 	while (av[i])
 	{
 		j = 0;
@@ -27,14 +39,19 @@ int	just_digit(char **av)
 
 int	check_usage(int ac, char **av)
 {
-	if (ac != 4 && ac != 5)
+	if (ac < 5)
 	{
-		printf("%s\n", ARG_NUMBER);
+		printf("%s", NOT_ENOUGH_ARG);
+		return (0);
+	}
+	if (ac > 6)
+	{
+		printf("%s", TOO_MUCH_ARG);
 		return (0);
 	}
 	if (!just_digit(av))
 	{
-		printf("%s\n", INVALID_ARG);
+		printf("%s", INVALID_ARG);
 		return (0);
 	}
 	return (1);
