@@ -6,7 +6,7 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:27:12 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/05/11 21:27:20 by seetwoo          ###   ########.fr       */
+/*   Updated: 2025/05/12 00:37:21 by seetwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	just_digit(char **av)
 		j = 0;
 		while (av[i][j])
 		{
-			if (!ft_isdigit(av[i][j]))	
+			if (!ft_isdigit(av[i][j]))
 				return (0);
 			j++;
 		}
