@@ -24,9 +24,9 @@ t_philo	**init_philosophers(t_phvar *args)
 		return (NULL);
 	philos[args->philo_number] = NULL;
 	i = 0;
-	while (philos[i])
+	while (i < args->philo_number)
 	{
-		philos[i] = malloc(sizeof(t_philo *));
+		philos[i] = malloc(sizeof(t_philo));
 		if (!(philos[i]))
 			return (NULL);
 		philos[i]->args = args;

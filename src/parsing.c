@@ -14,12 +14,15 @@
 
 int	ft_atoi(char *s)
 {
+	int	i;
 	int	n;
 
-	while (*s)
+	i = 0;
+	n = 0;
+	while (s[i])
 	{
-		n = (n * 10) + (*s + '0');
-		s++;
+		n = (n * 10) + (s[i] - '0');
+		i++;
 	}
 	return (n);
 }
@@ -30,7 +33,8 @@ void	parsing(char **av, t_phvar *arg)
 	arg->time_to_die = ft_atoi(av[2]);
 	arg->time_to_eat = ft_atoi(av[3]);
 	arg->time_to_sleep = ft_atoi(av[4]);
-	arg->max_meal = -1;
 	if (av[5])
 		arg->max_meal = ft_atoi(av[5]);
+	else
+		arg->max_meal = -1;
 }
