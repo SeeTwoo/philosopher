@@ -3,9 +3,13 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes
 DFLAGS = $(CFLAGS) -g3
 
 SRC_DIR = src
-SRC_FILES =	main.c \
+SRC_FILES =	init_philosophers.c \
+			main.c \
 			parsing.c \
-			usage.c
+			philo_runtime.c \
+			start_threads.c \
+			usage.c \
+			wait_threads.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 

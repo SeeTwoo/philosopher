@@ -1,33 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   philo_runtime.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
+/*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/11 21:11:00 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/05/12 13:11:02 by wbeschon         ###   ########.fr       */
+/*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
+/*   Updated: 2025/05/12 13:32:36 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	*hello_void(void *arg)
+void	*philo_runtime(void *philo)
 {
-	printf("%s", (char *)arg);
+	printf("hey, this is philo number %d\n", ((t_philo *)philo)->index);
 	return (NULL);
-}
-
-int	main(int ac, char **av)
-{
-	t_phvar		args;
-	t_philo		**philos;
-
-	if (!check_usage(ac, av))
-		return (1);
-	parsing(av, &args);
-	philos = init_philosophers(&args);
-	start_threads(philos);
-	wait_threads(philos);
-	return (0);
 }
