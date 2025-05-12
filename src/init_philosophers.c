@@ -12,6 +12,8 @@
 
 #include "philosopher.h"
 
+//this needs better freees
+
 t_philo	**init_philosophers(t_phvar *args)
 {
 	t_philo	**philos;
@@ -26,7 +28,7 @@ t_philo	**init_philosophers(t_phvar *args)
 	{
 		philos[i] = malloc(sizeof(t_philo *));
 		if (!(philos[i]))
-			return (NULL);									//better later
+			return (NULL);
 		philos[i]->args = args;
 		philos[i]->index = i;
 		philos[i]->dead = 0;
