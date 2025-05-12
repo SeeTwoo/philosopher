@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <pthread.h>
 
 # define TOO_MUCH_ARG "too much arguments\n"
 # define NOT_ENOUGH_ARG "not enough arguments\n"
@@ -25,11 +26,12 @@ typedef struct s_phvar	t_phvar;
 
 struct s_phvar
 {
-	int	philo_number;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	max_meal;
+	int			philo_number;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			max_meal;
+	pthread_t	*thread;
 };
 
 int		check_usage(int ac, char **av);

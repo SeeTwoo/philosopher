@@ -19,5 +19,6 @@ int	main(int ac, char **av)
 	if (!check_usage(ac, av))
 		return (1);
 	parsing(av, &args);
+	args->thread = malloc(sizeof(p_threa
 	return (0);
 }
