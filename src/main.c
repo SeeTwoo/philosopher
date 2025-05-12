@@ -26,6 +26,8 @@ int	main(int ac, char **av)
 	if (!check_usage(ac, av))
 		return (1);
 	parsing(av, &args);
+	if (args.philo_number == 0)
+		return (0);
 	philos = init_philosophers(&args);
 	start_threads(philos);
 	wait_threads(philos);
