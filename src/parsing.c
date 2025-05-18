@@ -6,7 +6,7 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:31:10 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/05/11 22:39:28 by seetwoo          ###   ########.fr       */
+/*   Updated: 2025/05/18 22:23:14 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_atoi(char *s)
 
 void	parsing(char **av, t_phvar *arg)
 {
-	arg->philo_number = ft_atoi(av[1]);
+	arg->nb_philos = ft_atoi(av[1]);
 	arg->time_to_die = ft_atoi(av[2]);
 	arg->time_to_eat = ft_atoi(av[3]);
 	arg->time_to_sleep = ft_atoi(av[4]);

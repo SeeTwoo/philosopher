@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:03:01 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/05/12 13:15:18 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/05/19 00:09:52 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 //this needs better freees
 
-t_philo	**init_philosophers(t_phvar *args)
+long	get_ts(void)
 {
-	t_philo	**philos;
-	int		i;
+	struct timeval tv;
 
-	philos = malloc(sizeof(t_philo *) * (args->philo_number + 1));
-	if (!philos)
-		return (NULL);
-	philos[args->philo_number] = NULL;
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec);
+}
+
+int	init_philosophers(t_sim *sim)
+{
+	int		i;
+	long	start_time;
+
+	sim->philos = malloc(sizeof(t_philo) * sim->nb_philos);
+	if (!(sim->philos))
+		return (1);
+	sim->forks = malloc(sizeof(pthread_mutex_t) * sim->nb_philos);
+	if (!(sim->forks))
+		return (1);
 	i = 0;
-	while (i < args->philo_number)
+	start_time = gettimeofday
+	while (i < sim->nb_philos)
 	{
-		philos[i] = malloc(sizeof(t_philo));
-		if (!(philos[i]))
-			return (NULL);
-		philos[i]->args = args;
-		philos[i]->index = i;
-		philos[i]->dead = 0;
-		philos[i]->fork_state = FREE;
-		i++;
+		sim->philos[i]->meal_count = 0;
+		sim->philos[i]->last_meal_time = get
 	}
-	return (philos);
+	return (0);
 }

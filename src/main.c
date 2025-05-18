@@ -6,30 +6,23 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:11:00 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/05/12 13:11:02 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/05/18 22:20:23 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	*hello_void(void *arg)
-{
-	printf("%s", (char *)arg);
-	return (NULL);
-}
-
 int	main(int ac, char **av)
 {
-	t_phvar		args;
-	t_philo		**philos;
-
+	t_sim	sim;
+	
 	if (!check_usage(ac, av))
 		return (1);
-	parsing(av, &args);
+	parsing(av, &sim);
 	if (args.philo_number == 0)
 		return (0);
-	philos = init_philosophers(&args);
-	start_threads(philos);
-	wait_threads(philos);
+	init_philos(&args);
+	start_threads(sim.philos);
+	wait_threads(sim.philos);
 	return (0);
 }
