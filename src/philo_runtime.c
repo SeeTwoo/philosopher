@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 17:08:35 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:46:43 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,12 @@ int	philo_eat(t_philo *philo)
 void	*philo_runtime(void *philo)
 {
 	t_philo	*ph;
+	t_sim	*sim;
 
 	ph = (t_philo *)philo;
+	sim = ph->sim;
 	if (ph->id % 2 == 1)
-		usleep(1000);
+		usleep(sim->tte * 1000);
 	while (1)
 	{
 		if (philo_eat(ph) == SOMEONE_DIED)
