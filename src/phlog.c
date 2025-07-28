@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 17:30:23 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 16:31:59 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:36:43 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	phlog(t_philo *philo, char *s)
 	pthread_mutex_unlock(&(philo->sim->death_mutex));
 	pthread_mutex_lock(&(philo->sim->write_mutex));
 	printf("%ld philo number %d %s\n", get_time_ms() - philo->start_time,
-			philo->id + 1, s);
+		philo->id + 1, s);
 	pthread_mutex_unlock(&(philo->sim->write_mutex));
 	return (ALL_RIGHT);
 }
