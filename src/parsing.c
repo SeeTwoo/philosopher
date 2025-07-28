@@ -1,0 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/11 21:31:10 by seetwoo           #+#    #+#             */
+/*   Updated: 2025/07/28 12:42:22 by wbeschon         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philosopher.h"
+
+int	ft_atoi(char *s)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (s[i])
+	{
+		n = (n * 10) + (s[i] - '0');
+		i++;
+	}
+	return (n);
+}
+
+void	parsing(char **av, t_sim *sim)
+{
+	sim->nb_ph = ft_atoi(av[1]);
+	sim->ttd = ft_atoi(av[2]);
+	sim->tte = ft_atoi(av[3]);
+	sim->tts = ft_atoi(av[4]);
+	if (av[5])
+		sim->max_meal = ft_atoi(av[5]);
+	else
+		sim->max_meal = -1;
+}
