@@ -3,7 +3,9 @@ CFLAGS = -Wall -Wextra -Werror -Iincludes
 DFLAGS = $(CFLAGS) -g3
 
 SRC_DIR = src
-SRC_FILES =	init_philosophers.c \
+SRC_FILES =	cleaners.c \
+			init_philosophers.c \
+			lone_philo_runtime.c \
 			main.c \
 			monitor_threads.c \
 			parsing.c \

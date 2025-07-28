@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_threads.c                                    :+:      :+:    :+:   */
+/*   cleaners.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/12 12:59:39 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 19:19:20 by wbeschon         ###   ########.fr       */
+/*   Created: 2025/07/28 18:35:35 by wbeschon          #+#    #+#             */
+/*   Updated: 2025/07/28 18:37:41 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	start_threads(t_sim *sim)
+void	destroy_all(t_sim *sim)
 {
 	int	i;
 
 	i = 0;
-	sim->start_time = get_time_ms();
-	if (sim->nb_ph == 1)
-	{
-		sim->philos[0].last_meal_time = sim->start_time;
-		if (pthread_create(&sim->philos[i].thread, NULL,
-				&lone_philo_runtime, &sim->philos[i]))
-			return (1);
-		return (0);
-	}
 	while (i < sim->nb_ph)
 	{
-		sim->philos[i].last_meal_time = sim->start_time;
-		if (pthread_create(&(sim->philos[i].thread), NULL,
-				philo_runtime, &(sim->philos[i])))
-			return (1);
+		pthread_mutex_destroy(&sim->forks[i]);
+		pthread_mutex_destroy(&sim->philos[i].meal_mutex);
 		i++;
 	}
-	return (0);
+	pthread_mutex_destroy(&sim->death_mutex);
+	pthread_mutex_destroy(&sim->write_mutex);
+	free(sim->forks);
+	free(sim->philos);
 }

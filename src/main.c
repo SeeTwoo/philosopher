@@ -6,7 +6,7 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:11:00 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/07/28 15:07:31 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:39:19 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ int	main(int ac, char **av)
 	parsing(av, &sim);
 	if (sim.nb_ph == 0)
 		return (0);
-	init_philosophers(&sim);
-	start_threads(&sim);
-	monitor_threads(&sim);
+	if (init_philosophers(&sim))
+		return (1);
+	if (start_threads(&sim))
+		return (1);
+	monitor_simulation(&sim);
 	wait_threads(&sim);
+	destroy_all(&sim);
 	return (0);
 }

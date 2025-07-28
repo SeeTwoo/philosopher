@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:21:07 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 15:12:31 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:02:41 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ struct s_sim
 	int				max_meal;
 	long			start_time;
 	int				someone_died;
-	int				max_meal_reached;
+	int				all_ate;
 	pthread_mutex_t	death_mutex;
 	pthread_mutex_t	write_mutex;
 	t_philo			*philos;

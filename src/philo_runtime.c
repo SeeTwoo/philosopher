@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 17:46:43 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:52:52 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ void	pick_up_fork(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
+		phlog(philo, FORK);
 		pthread_mutex_lock(philo->left_fork);
+		phlog(philo, FORK);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->left_fork);
+		phlog(philo, FORK);
 		pthread_mutex_lock(philo->right_fork);
+		phlog(philo, FORK);
 	}
 }
 
@@ -48,7 +52,7 @@ int	ft_sleep(long duration, t_sim *sim)
 	while (get_time_ms() - start_sleep < duration)
 	{
 		pthread_mutex_lock(&sim->death_mutex);
-		if (sim->someone_died)
+		if (sim->someone_died || sim->all_ate)
 		{
 			pthread_mutex_unlock(&sim->death_mutex);
 			return (SOMEONE_DIED);
@@ -59,20 +63,16 @@ int	ft_sleep(long duration, t_sim *sim)
 	return (ALL_RIGHT);
 }
 
-int	philo_eat(t_philo *philo)
+void	philo_eat(t_philo *philo)
 {
-	int	return_state;
-
 	pick_up_fork(philo);
-	phlog(philo, FORK);
-	phlog(philo, FORK);
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_time = get_time_ms();
+	philo->meal_count++;
 	pthread_mutex_unlock(&philo->meal_mutex);
 	phlog(philo, EAT);
-	return_state = ft_sleep(philo->sim->tte, philo->sim);
+	ft_sleep(philo->sim->tte, philo->sim);
 	put_down_fork(philo);
-	return (return_state);
 }
 
 void	*philo_runtime(void *philo)
@@ -86,11 +86,17 @@ void	*philo_runtime(void *philo)
 		usleep(sim->tte * 1000);
 	while (1)
 	{
-		if (philo_eat(ph) == SOMEONE_DIED)
-			return (NULL);
+		pthread_mutex_lock(&sim->death_mutex);
+		if (sim->someone_died || sim->all_ate)
+		{
+			pthread_mutex_unlock(&sim->death_mutex);
+			break ;
+		}
+		pthread_mutex_unlock(&sim->death_mutex);
+		philo_eat(ph);
 		phlog(ph, SLEEP);
-		if (ft_sleep(ph->sim->tts, ph->sim) == SOMEONE_DIED)
-			return (NULL);
+		if (ft_sleep(ph->sim->tts, ph->sim))
+			break ;
 		phlog(ph, THINK);
 	}
 	return (NULL);
