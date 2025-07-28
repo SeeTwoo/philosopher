@@ -12,12 +12,20 @@
 
 #include "philosopher.h"
 
+long	get_start_time(t_sim *sim)
+{
+	long	total_wait;
+
+	total_wait = sim->nb_ph * 2;
+	return (get_time_ms() + total_wait);
+}
+
 int	start_threads(t_sim *sim)
 {
 	int	i;
 
 	i = 0;
-	sim->start_time = get_time_ms();
+	sim->start_time = get_start_time(sim);
 	if (sim->nb_ph == 1)
 	{
 		sim->philos[0].last_meal_time = sim->start_time;

@@ -26,6 +26,7 @@ void		parsing(char **av, t_sim *args);
 void		*philo_runtime(void *philo);
 void		phlog(t_philo *philo, char *s);
 int			start_threads(t_sim *sim);
+void		wait_for_start(t_philo *philo);
 void		wait_threads(t_sim *sim);
 
 #endif

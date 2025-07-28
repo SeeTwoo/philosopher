@@ -46,19 +46,23 @@ void	put_down_fork(t_philo *philo)
 
 int	ft_sleep(long duration, t_sim *sim)
 {
-	long	start_sleep;
+	long			start_sleep;
+	pthread_mutex_t	*state_mutex;
 
 	start_sleep = get_time_ms();
+	pthread_mutex_lock(&sim->death_mutex);
+	state_mutex = &sim->death_mutex;
+	pthread_mutex_unlock(&sim->death_mutex);
 	while (get_time_ms() - start_sleep < duration)
 	{
-		pthread_mutex_lock(&sim->death_mutex);
+		pthread_mutex_lock(state_mutex);
 		if (sim->someone_died || sim->all_ate)
 		{
-			pthread_mutex_unlock(&sim->death_mutex);
+			pthread_mutex_unlock(state_mutex);
 			return (SOMEONE_DIED);
 		}
-		pthread_mutex_unlock(&sim->death_mutex);
-		usleep(500);
+		pthread_mutex_unlock(state_mutex);
+		usleep(200);
 	}
 	return (ALL_RIGHT);
 }
@@ -82,6 +86,7 @@ void	*philo_runtime(void *philo)
 
 	ph = (t_philo *)philo;
 	sim = ph->sim;
+	wait_for_start(ph);
 	delay(ph);
 	while (1)
 	{

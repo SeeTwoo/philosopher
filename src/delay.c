@@ -12,6 +12,20 @@
 
 #include "philosopher.h"
 
+void	wait_for_start(t_philo *philo)
+{
+	long	start_time;
+	long	time;
+
+	start_time = philo->sim->start_time;
+	time = (start_time - get_time_ms()) / 2;
+	while (get_time_ms() < start_time)
+	{
+		usleep(time);
+		time = (start_time - get_time_ms()) / 2;
+	}
+}
+
 void	delay(t_philo *philo)
 {
 	if (philo->sim->nb_ph % 2 == 1)
