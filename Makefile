@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes
+CFLAGS = -Wall -Wextra -Werror -Iincludes -g3
 DFLAGS = $(CFLAGS) -g3
 
 SRC_DIR = src

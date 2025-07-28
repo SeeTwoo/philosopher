@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 12:42:55 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 12:54:05 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	*philo_runtime(void *philo)
 	ph = (t_philo *)philo;
 	if (ph->id == 1)
 		usleep(10);
+	printf("hello from thread number %d\n", ph->id);
+	fflush(stdout);
 	while (1)
 	{
 		if (philo_eat(ph) == 1)
