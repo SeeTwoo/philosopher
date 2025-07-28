@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:22:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 18:54:21 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 21:46:14 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_FUNCS_H
 
 int			check_usage(int ac, char **av);
+void		delay(t_philo *philo);
 void		destroy_all(t_sim *sim);
 int			ft_sleep(long duration, t_sim *sim);
 long		get_time_ms(void);

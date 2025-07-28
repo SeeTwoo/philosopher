@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:03:01 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 19:18:51 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 22:05:39 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int	init_philosophers(t_sim *sim)
 {
 	int		i;
 
+	sim->philos = NULL;
+	sim->forks = NULL;
 	sim->philos = malloc(sizeof(t_philo) * sim->nb_ph);
 	if (!(sim->philos))
 		return (1);
 	sim->forks = malloc(sizeof(pthread_mutex_t) * sim->nb_ph);
 	if (!(sim->forks))
-		return (1);
+		return (free(sim->philos), 1);
 	i = 0;
 	while (i < sim->nb_ph)
 	{

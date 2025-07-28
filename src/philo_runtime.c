@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 18:52:52 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 22:26:02 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ void	*philo_runtime(void *philo)
 
 	ph = (t_philo *)philo;
 	sim = ph->sim;
-	if (ph->id % 2 == 1)
-		usleep(sim->tte * 1000);
+	delay(ph);
 	while (1)
 	{
 		pthread_mutex_lock(&sim->death_mutex);

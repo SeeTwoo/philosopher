@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phlog.c                                            :+:      :+:    :+:   */
+/*   delay.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/27 17:30:23 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 21:26:48 by wbeschon         ###   ########.fr       */
+/*   Created: 2025/07/28 21:42:36 by wbeschon          #+#    #+#             */
+/*   Updated: 2025/07/28 22:01:25 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	phlog(t_philo *philo, char *s)
+void	delay(t_philo *philo)
 {
-	pthread_mutex_lock(&(philo->sim->death_mutex));
-	if (philo->sim->someone_died || philo->sim->all_ate)
+	if (philo->sim->nb_ph % 2 == 1)
 	{
-		pthread_mutex_unlock(&(philo->sim->death_mutex));
-		return ;
+		phlog(philo, THINK);
+		ft_sleep(((philo->sim->tte / (philo->sim->nb_ph - 1)) * (philo->id)), philo->sim);
 	}
-	pthread_mutex_unlock(&(philo->sim->death_mutex));
-	pthread_mutex_lock(&(philo->sim->write_mutex));
-	printf("%ld %d %s\n", get_time_ms() - philo->sim->start_time,
-		philo->id + 1, s);
-	pthread_mutex_unlock(&(philo->sim->write_mutex));
 }
