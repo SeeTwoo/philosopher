@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 16:06:11 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 17:08:35 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,12 @@ void	pick_up_fork(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
-		phlog(philo, FORK);
 		pthread_mutex_lock(philo->left_fork);
-		phlog(philo, FORK);
 	}
 	else
 	{
 		pthread_mutex_lock(philo->left_fork);
-		phlog(philo, FORK);
 		pthread_mutex_lock(philo->right_fork);
-		phlog(philo, FORK);
 	}
 }
 
@@ -68,6 +64,8 @@ int	philo_eat(t_philo *philo)
 	int	return_state;
 
 	pick_up_fork(philo);
+	phlog(philo, FORK);
+	phlog(philo, FORK);
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal_time = get_time_ms();
 	pthread_mutex_unlock(&philo->meal_mutex);
@@ -82,8 +80,8 @@ void	*philo_runtime(void *philo)
 	t_philo	*ph;
 
 	ph = (t_philo *)philo;
-	if (ph->id == 1)
-		usleep(10);
+	if (ph->id % 2 == 1)
+		usleep(1000);
 	while (1)
 	{
 		if (philo_eat(ph) == SOMEONE_DIED)

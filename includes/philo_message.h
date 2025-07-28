@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:12:38 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 12:40:42 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:34:28 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PHILO_MESSAGE_H
 
 # define FORK "has taken a fork"
-# define EAT "is eating"
+# define EAT "\e[31mis eating\e[0m"
 # define SLEEP "is sleeping"
 # define THINK "is thinking"
 # define DIED "died"
