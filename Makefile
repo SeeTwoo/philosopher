@@ -1,10 +1,9 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -g3
+CFLAGS = -Wall -Wextra -Werror -Iincludes
 DFLAGS = $(CFLAGS) -g3
 
 SRC_DIR = src
-SRC_FILES =	fork_handling.c \
-			init_philosophers.c \
+SRC_FILES =	init_philosophers.c \
 			main.c \
 			monitor_threads.c \
 			parsing.c \

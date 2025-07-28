@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:22:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 12:18:09 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:08:13 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 
 int			check_usage(int ac, char **av);
 long		get_time_ms(void);
+void		init_mutexes(t_sim *sim);
 int			init_philosophers(t_sim *sim);
 void		monitor_threads(t_sim *sim);
 void		parsing(char **av, t_sim *args);
 void		*philo_runtime(void *philo);
 int			phlog(t_philo *philo, char *s);
-void		pick_up_fork(t_philo *philo);
-void		put_down_fork(t_philo *philo);
 void		start_threads(t_sim *sim);
 void		wait_threads(t_sim *sim);
 

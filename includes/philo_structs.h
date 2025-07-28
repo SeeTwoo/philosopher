@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:21:07 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 12:40:14 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 15:12:31 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,12 @@ struct s_philo
 	int				id;
 	int				nb_ph;
 	int				meal_count;
+	long			start_time;
 	long			last_meal_time;
 	pthread_t		thread;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	meal_mutex;
 	t_sim			*sim;
 };
 

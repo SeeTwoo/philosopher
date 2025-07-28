@@ -6,56 +6,75 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:56:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 12:54:05 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/28 16:06:11 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-//lasts some time
-int	philo_eat(t_philo *philo)
+void	pick_up_fork(t_philo *philo)
 {
-	int		i;
-	long	start_meal;
-
-	i = philo->id;
-	pick_up_fork(philo);
-	start_meal = get_time_ms();
-	philo->last_meal_time = start_meal;
-	while (get_time_ms() - start_meal < philo->sim->tte)
+	if (philo->id % 2 == 0)
 	{
-		pthread_mutex_lock(&philo->sim->death_mutex);
-		if (philo->sim->someone_died)
-		{
-			pthread_mutex_unlock(&philo->sim->death_mutex);
-			return (SOMEONE_DIED);
-		}
-		pthread_mutex_unlock(&philo->sim->death_mutex);
-		usleep(10);
+		pthread_mutex_lock(philo->right_fork);
+		phlog(philo, FORK);
+		pthread_mutex_lock(philo->left_fork);
+		phlog(philo, FORK);
 	}
-	put_down_fork(philo);
-	return (ALL_RIGHT);
+	else
+	{
+		pthread_mutex_lock(philo->left_fork);
+		phlog(philo, FORK);
+		pthread_mutex_lock(philo->right_fork);
+		phlog(philo, FORK);
+	}
 }
 
-//lasts some time
-int	philo_sleep(t_philo *philo)
+void	put_down_fork(t_philo *philo)
+{
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		pthread_mutex_unlock(philo->right_fork);
+	}
+	else
+	{
+		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
+	}
+}
+
+int	ft_sleep(long duration, t_sim *sim)
 {
 	long	start_sleep;
 
 	start_sleep = get_time_ms();
-	phlog(philo, SLEEP);
-	while (get_time_ms() - start_sleep < philo->sim->tts)
+	while (get_time_ms() - start_sleep < duration)
 	{
-		pthread_mutex_lock(&philo->sim->death_mutex);
-		if (philo->sim->someone_died)
+		pthread_mutex_lock(&sim->death_mutex);
+		if (sim->someone_died)
 		{
-			pthread_mutex_unlock(&philo->sim->death_mutex);
+			pthread_mutex_unlock(&sim->death_mutex);
 			return (SOMEONE_DIED);
 		}
-		pthread_mutex_unlock(&philo->sim->death_mutex);
-		usleep(10);
+		pthread_mutex_unlock(&sim->death_mutex);
+		usleep(500);
 	}
 	return (ALL_RIGHT);
+}
+
+int	philo_eat(t_philo *philo)
+{
+	int	return_state;
+
+	pick_up_fork(philo);
+	pthread_mutex_lock(&philo->meal_mutex);
+	philo->last_meal_time = get_time_ms();
+	pthread_mutex_unlock(&philo->meal_mutex);
+	phlog(philo, EAT);
+	return_state = ft_sleep(philo->sim->tte, philo->sim);
+	put_down_fork(philo);
+	return (return_state);
 }
 
 void	*philo_runtime(void *philo)
@@ -65,13 +84,12 @@ void	*philo_runtime(void *philo)
 	ph = (t_philo *)philo;
 	if (ph->id == 1)
 		usleep(10);
-	printf("hello from thread number %d\n", ph->id);
-	fflush(stdout);
 	while (1)
 	{
-		if (philo_eat(ph) == 1)
+		if (philo_eat(ph) == SOMEONE_DIED)
 			return (NULL);
-		if (philo_sleep(ph) == 1)
+		phlog(ph, SLEEP);
+		if (ft_sleep(ph->sim->tts, ph->sim) == SOMEONE_DIED)
 			return (NULL);
 		phlog(ph, THINK);
 	}
