@@ -21,7 +21,7 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ_DIR = obj
 OBJ = $(SRC:$(SRC_DIR)%.c=$(OBJ_DIR)%.o)
 
-NAME = philosopher 
+NAME = philo
 
 all: $(NAME)
 

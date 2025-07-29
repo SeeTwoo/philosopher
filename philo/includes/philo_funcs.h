@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:22:09 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 21:46:14 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:52:57 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		init_mutexes(t_sim *sim);
 int			init_philosophers(t_sim *sim);
 void		*lone_philo_runtime(void *arg);
 void		monitor_simulation(t_sim *sim);
-void		parsing(char **av, t_sim *args);
+int			parsing(char **av, t_sim *args);
 void		*philo_runtime(void *philo);
 void		phlog(t_philo *philo, char *s);
 int			start_threads(t_sim *sim);

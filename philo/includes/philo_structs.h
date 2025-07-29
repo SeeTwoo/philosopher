@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:21:07 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/28 18:02:41 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/29 17:57:56 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,6 @@
 typedef struct s_sim	t_sim;
 typedef struct s_philo	t_philo;
 typedef struct s_fork	t_fork;
-
-struct s_sim
-{
-	int				nb_ph;
-	int				ttd;
-	int				tte;
-	int				tts;
-	int				max_meal;
-	long			start_time;
-	int				someone_died;
-	int				all_ate;
-	pthread_mutex_t	death_mutex;
-	pthread_mutex_t	write_mutex;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
-};
-
-//ttd = time to die
-//tte = time to eat
-//tts = time to sleep
 
 struct s_philo
 {
@@ -50,5 +30,26 @@ struct s_philo
 	pthread_mutex_t	meal_mutex;
 	t_sim			*sim;
 };
+
+struct s_sim
+{
+	int				nb_ph;
+	int				ttd;
+	int				tte;
+	int				tts;
+	int				max_meal;
+	long			start_time;
+	int				someone_died;
+	int				all_ate;
+	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	write_mutex;
+	t_philo			philos[200];
+	pthread_mutex_t	forks[200];
+	int				fork_states[200];
+};
+
+//ttd = time to die
+//tte = time to eat
+//tts = time to sleep
 
 #endif
