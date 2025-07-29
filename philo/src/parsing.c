@@ -6,7 +6,7 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:31:10 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/07/29 18:00:50 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/29 22:33:40 by seetwoo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_atoi(char *s)
 long	min_think(int tte, int tts, int ttd)
 {
 	long	min_think;
-	
+
 	min_think = ttd - tte - tts;
 	if (min_think < 0)
 		return (0);

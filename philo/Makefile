@@ -5,6 +5,7 @@ DFLAGS = $(CFLAGS) -g3
 SRC_DIR = src
 SRC_FILES =	cleaners.c \
 			delay.c \
+			fork_handling.c \
 			init_philosophers.c \
 			lone_philo_runtime.c \
 			main.c \
