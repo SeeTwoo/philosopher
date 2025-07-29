@@ -35,6 +35,7 @@ int	init_philosophers(t_sim *sim)
 	i = 0;
 	while (i < sim->nb_ph)
 	{
+		sim->philos[i].min_think = sim->min_think;
 		sim->philos[i].nb_ph = sim->nb_ph;
 		sim->philos[i].id = i;
 		sim->philos[i].meal_count = 0;

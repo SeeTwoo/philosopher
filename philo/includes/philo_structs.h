@@ -22,6 +22,7 @@ struct s_philo
 	int				id;
 	int				nb_ph;
 	int				meal_count;
+	long			min_think;
 	long			start_time;
 	long			last_meal_time;
 	pthread_t		thread;
@@ -38,6 +39,7 @@ struct s_sim
 	int				tte;
 	int				tts;
 	int				max_meal;
+	long			min_think;
 	long			start_time;
 	int				someone_died;
 	int				all_ate;

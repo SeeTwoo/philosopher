@@ -27,6 +27,16 @@ int	ft_atoi(char *s)
 	return (n);
 }
 
+long	min_think(int tte, int tts, int ttd)
+{
+	long	min_think;
+	
+	min_think = ttd - tte - tts;
+	if (min_think < 0)
+		return (0);
+	return (min_think / 2);
+}
+
 int	parsing(char **av, t_sim *sim)
 {
 	sim->nb_ph = ft_atoi(av[1]);
@@ -38,6 +48,10 @@ int	parsing(char **av, t_sim *sim)
 	sim->ttd = ft_atoi(av[2]);
 	sim->tte = ft_atoi(av[3]);
 	sim->tts = ft_atoi(av[4]);
+	if (sim->nb_ph % 2 == 1)
+		sim->min_think = min_think(sim->tte, sim->tts, sim->ttd);
+	else
+		sim->min_think = 0;
 	if (av[5])
 		sim->max_meal = ft_atoi(av[5]);
 	else

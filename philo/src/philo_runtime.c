@@ -136,9 +136,11 @@ void	*philo_runtime(void *philo)
 	{
 		philo_eat(ph);
 		phlog(ph, SLEEP);
-		if (ft_sleep(ph->sim->tts, ph->sim))
+		if (ft_sleep(sim->tts, sim))
 			break ;
 		phlog(ph, THINK);
+		if (ft_sleep(ph->min_think, sim))
+			break ;
 	}
 	return (NULL);
 }
