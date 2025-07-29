@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/28 11:12:38 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/29 17:59:55 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:05:17 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,5 @@
 # define ARG_NUMBER "invalid argument number.\n"
 # define INVALID_ARG "invalid argument. Arguments can only contain digits\n"
 # define TOO_MUCH_PHILO "There cannot be more than 200 philosophers\n"
-
-# define I_AM_DEAD 2
-# define SOMEONE_DIED 1
-# define ALL_RIGHT 0
 
 #endif

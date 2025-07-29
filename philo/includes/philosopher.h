@@ -6,7 +6,7 @@
 /*   By: seetwoo <waltibee@gmail.com>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 21:11:52 by seetwoo           #+#    #+#             */
-/*   Updated: 2025/07/28 11:23:31 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/29 18:46:26 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@
 # include "philo_message.h"
 # include "philo_structs.h"
 # include "philo_funcs.h"
+# include "philo_def.h"
 
 #endif

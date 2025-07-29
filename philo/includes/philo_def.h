@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cleaners.c                                         :+:      :+:    :+:   */
+/*   philo_def.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/28 18:35:35 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/29 20:35:18 by wbeschon         ###   ########.fr       */
+/*   Created: 2025/07/29 18:03:40 by wbeschon          #+#    #+#             */
+/*   Updated: 2025/07/29 18:44:35 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#ifndef PHILO_DEF_H
+# define PHILO_DEF_H
 
-void	destroy_all(t_sim *sim)
-{
-	int	i;
+# define FREE 0
+# define TAKEN 1
 
-	i = 0;
-	while (i < sim->nb_ph)
-	{
-		pthread_mutex_destroy(&sim->forks[i]);
-		pthread_mutex_destroy(&sim->philos[i].meal_mutex);
-		i++;
-	}
-	pthread_mutex_destroy(&sim->death_mutex);
-	pthread_mutex_destroy(&sim->write_mutex);
-}
+# define I_AM_DEAD 2
+# define SOMEONE_DIED 1
+# define ALL_RIGHT 0
+
+# define SUCCESS 0
+# define FAILURE 1
+
+#endif

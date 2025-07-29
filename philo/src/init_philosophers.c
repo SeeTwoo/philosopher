@@ -6,7 +6,7 @@
 /*   By: wbeschon <wbeschon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 12:03:01 by wbeschon          #+#    #+#             */
-/*   Updated: 2025/07/29 17:51:33 by wbeschon         ###   ########.fr       */
+/*   Updated: 2025/07/29 20:33:58 by wbeschon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ int	init_philosophers(t_sim *sim)
 	i = 0;
 	while (i < sim->nb_ph)
 	{
+		sim->philos[i].nb_ph = sim->nb_ph;
 		sim->philos[i].id = i;
 		sim->philos[i].meal_count = 0;
 		sim->philos[i].left_fork = &(sim->forks[i]);
 		sim->philos[i].right_fork = &(sim->forks[(i + 1) % sim->nb_ph]);
 		sim->philos[i].sim = sim;
+		sim->fork_states[i] = 0;
 		i++;
 	}
 	init_mutexes(sim);
